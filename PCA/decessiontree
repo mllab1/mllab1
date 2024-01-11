@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+df = pd.read_csv("C:\\Users\\Narendra Babu\\Downloads\\zoo_data(For Decision Tree Program).csv")
+df.head()
+
+x = df.iloc[: , 1:]
+y = df.iloc[: ,0]
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+x_train , x_test ,y_train , y_test= train_test_split(x,y)
+#clf = DecisionTreeClassifier(criterion='entropy', splitter='best', max_depth=15,max_leaf_nodes=20)
+clf = DecisionTreeClassifier(criterion='entropy', splitter='best', max_depth=15)
+clf.fit(x_train,y_train)
+DecisionTreeClassifier(criterion='entropy', max_depth=15)
+
+
+from sklearn import tree
+plt.figure(figsize = (10,10))
+tree.plot_tree(clf , filled = True)
+
+
+
+y_pred = clf.predict(x_test)
+
+from sklearn.metrics import confusion_matrix, classification_report,accuracy_score
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy}')
+
+# Build a confusion matrix
+conf_matrix = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(conf_matrix)
+
+# Print classification report with precision, accuracy, and recall
+class_report = classification_report(y_test, y_pred)
+print("Classification Report:")
+print(class_report)
