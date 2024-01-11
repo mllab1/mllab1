@@ -1,0 +1,58 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+col = ['x','y']
+df = pd.read_csv("C:\\Users\\Narendra Babu\\Downloads\\Food-Truck(For Linear Regression Program).csv", names = col)
+df.head()
+
+plt.scatter(df['x'], df['y'])
+plt.show()
+
+df.corr()
+
+# Calculate means
+m_x, m_y = np.mean(df['x']), np.mean(df['y'])
+print('Mean of x:', m_x)
+print('Mean of y:', m_y)
+
+
+# Calculate standard deviations
+sd_x, sd_y = np.std(df['x']), np.std(df['y'])
+print('Standard deviation of x:', sd_x)
+print('Standard deviation of y:', sd_y)
+
+
+# Calculate Pearson correlation coefficient (r)
+r = np.corrcoef(df['x'], df['y'])[0, 1]
+print("Pearson Correlation Coefficient (r):", r)
+
+
+# Calculate the slope (b) and intercept (a) for linear regression
+b = r * (sd_y / sd_x)
+a = m_y - (b * m_x)
+print("Slope (b) Coefficient:", b)
+print("Intercept (a) Coefficient:", a)
+
+# Calculate predicted y values and residuals
+df['y`'] = df['x'] * b + a
+df['y - y`'] = df['y'] - df['y`']
+df.head()
+
+
+# Calculate sum of squared residuals (SSR), sum of squared errors (SSE), and total sum of squares (SST)
+
+y_mean = np.mean(df['y'])
+
+# Calculate Sum of Squares Total (SST)
+sst = np.sum((df['y'] - y_mean) ** 2)
+
+# Calculate Sum of Squares Regression (SSR)
+ssr = np.sum((df['y`'] - y_mean) ** 2)
+
+# Calculate Sum of Squares Error (SSE)
+sse = np.sum((df['y`'] - df['y']) ** 2)
+r2 = 1 - (ssr / sst)
+print("SSE (Sum of Squared Errors) :", sse)
+print("SSR (Sum of Squared Regression) :", ssr)
+print("sum of squares (sst) :", sst)
+print("R-squared (Coefficient of Determination) :", r2)
