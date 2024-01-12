@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-data = pd.read_csv("C:\\Users\\Narendra Babu\\Downloads\\covid.csv")
+data = pd.read_csv("C:\\Users\\xyz\\Downloads\\covid.csv")
 from sklearn import preprocessing
 le = preprocessing.LabelEncoder()
 pc_encoded=le.fit_transform(data['pc'].values)
