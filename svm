@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-df = pd.read_csv("C:\\Users\\Narendra Babu\\Downloads\\glass(For SVM Program).csv")
+df = pd.read_csv("C:\\Users\\xyz\\Downloads\\glass(For SVM Program).csv")
 df.head()
 
 X = df.iloc[:,:-1]
