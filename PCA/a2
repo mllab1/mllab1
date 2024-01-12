@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
-df=pd.read_csv("C:\\Users\\Narendra Babu\\Downloads\\iris(For PCA Program).csv")
+df=pd.read_csv("C:\\Users\\xyz\\Downloads\\iris(For PCA Program).csv")
 df.head()
 X = df.drop(['species'],axis=1)
 
